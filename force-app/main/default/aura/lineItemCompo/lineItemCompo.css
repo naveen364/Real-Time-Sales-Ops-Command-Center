@@ -1,0 +1,13 @@
+.THIS {
+    background-color: blanchedalmond;
+    padding: 20px;
+    margin: auto;
+}
+.THIS .floatright{
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+.THIS .container{
+    border-spacing: 20px;
+}

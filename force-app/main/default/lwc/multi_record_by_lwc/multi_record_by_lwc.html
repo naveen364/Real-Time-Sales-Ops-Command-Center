@@ -1,0 +1,14 @@
+<template>
+    <!-- <lightning-input-rich-text value={text} onfocusout={focusclick}></lightning-input-rich-text>
+        <lightning-button label="Save" onclick={handleSave}></lightning-button> -->
+
+
+    <lightning-record-edit-form object-api-name="Actor__c" record-id={recordId} style="height: 10rem;">
+        <lightning-input-field field-name="textrich__c"></lightning-input-field>
+        <div class="slds-var-m-top_medium">
+            <lightning-button variant="brand" type="submit" label="Save">
+            </lightning-button>
+        </div>
+    </lightning-record-edit-form>
+
+</template>

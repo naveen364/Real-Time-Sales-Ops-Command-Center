@@ -1,0 +1,11 @@
+<apex:page sidebar="false" showHeader="false" >
+    
+    <apex:includeScript value="/support/console/56.0/integration.js"/>
+    <script>
+    	function abc(){
+        	window.location.replace('http://www.google.com');    
+        }
+    </script>
+    <a href='javascript:abc()'>here</a>
+    
+</apex:page>

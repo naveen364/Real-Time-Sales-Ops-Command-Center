@@ -1,0 +1,20 @@
+<aura:component controller="AccRelateContactCreate" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+	<aura:attribute name="AccountName" type="string"/>
+    <aura:attribute name="NumberOfContact" type="String"/>
+    <aura:attribute name="Result" type="Object"/>
+    <div class="content">
+    	<ui:inputText label="Enter Account Name: " class="form-field" value="{!v.AccountName}" updateOn="keyup"/>
+        <hr/>
+		<ui:inputNumber label="Enter a number: " class="form-field" value="{!v.NumberOfContact}" updateOn="keyup"/>
+    	<hr/>
+        <ui:button aura:id="button" class="button" label="Submit" press="{!c.myAction}"/>
+        <p>
+            <br/>
+            Number of Contact: {! v.NumberOfContact }
+            <br/>
+            Account Name: {! v.AccountName }
+            <br/>
+            Result: {! v.Result }
+        </p>
+    </div>
+</aura:component>

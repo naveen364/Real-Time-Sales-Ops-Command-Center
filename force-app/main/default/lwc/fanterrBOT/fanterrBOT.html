@@ -1,0 +1,51 @@
+<template>
+    <lightning-card title="FunterrBOT">
+        <div class="slds-m-around_medium">
+            <lightning-textarea label="Whats in your mind?" value={prompt}
+                onchange={handlePromptChange}></lightning-textarea>
+            <lightning-button label="Generate Text" onclick={fetchdata} class="slds-m-top_small"></lightning-button>
+            <div if:true={load} class="slds-align_absolute-center">
+                <iframe class="slds-align_absolute-center" src="https://embed.lottiefiles.com/animation/27210"></iframe>
+            </div>
+            <!--template class="slider" if:true={data} for:each={data} for:item="d" for:index="i">
+            
+                  <img class="slide"
+                    key = {d}
+                    src={d.url}
+                    alt=""
+                  />
+            </template>
+            <button class="btn btn-next">></button>
+            <button class="btn btn-prev"><</button-->
+            <lightning-carousel if:true={data} class="slds-align_absolute-center">
+                <template for:each={data} for:item="d" for:index="i">
+                    <lightning-carousel-image class="slds-align_absolute-center" key={d} data-id={i}
+                        src={d.url}></lightning-carousel-image>
+                </template>
+            </lightning-carousel>
+            <!--lightning-textarea label="Generated Text" value={generatedText} class="slds-m-top_small"></lightning-textarea-->
+        </div>
+    </lightning-card>
+    <div if:true={error}>
+        {error}
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+            class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container" if:true={error}>
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={handleclose}>
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Cancel and close</span>
+                </button>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">ERROR</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <p>{error.message}</p>
+                </div>
+            </div>
+        </section>
+        <div if:true={error} class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </div>
+    
+</template>

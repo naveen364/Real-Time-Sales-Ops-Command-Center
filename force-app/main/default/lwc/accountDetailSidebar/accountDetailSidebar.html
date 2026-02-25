@@ -1,0 +1,31 @@
+<template>
+    <lightning-card title="Account Context" icon-name="standard:account">
+        <div class="slds-p-around_medium">
+            <template if:true={account}>
+                <div class="slds-grid slds-grid_vertical">
+                    <div class="slds-col slds-m-bottom_small">
+                        <p class="slds-text-title_caps">Account Name</p>
+                        <p class="slds-text-heading_small">{account.Name}</p>
+                    </div>
+                    <div class="slds-col slds-m-bottom_small">
+                        <p class="slds-text-title_caps">Industry</p>
+                        <p>{account.Industry}</p>
+                    </div>
+                    <div class="slds-col slds-m-bottom_small">
+                        <p class="slds-text-title_caps">Website</p>
+                        <p><a href={account.Website} target="_blank">{account.Website}</a></p>
+                    </div>
+                    <div class="slds-col slds-m-bottom_small">
+                        <p class="slds-text-title_caps">Annual Revenue</p>
+                        <p>₹{account.AnnualRevenue}</p>
+                    </div>
+                </div>
+            </template>
+            <template if:false={account}>
+                <div class="slds-align_absolute-center slds-text-color_weak slds-m-top_large">
+                    Select a Deal to view Account details
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

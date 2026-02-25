@@ -1,0 +1,46 @@
+.THIS {
+}
+.THIS.card{
+    margin: 8px;
+    padding:20px;
+}
+.THIS .inner{
+    padding:20px;
+}
+.THIS .floatright{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+.THIS #table_detail {
+    width: 500px;
+    text-align: left;
+    border-collapse: collapse;
+    color: #2E2E2E;
+    border: #A4A4A4;
+}
+
+.THIS #table_detail tr:hover {
+    background-color: #F2F2F2;
+}
+
+.THIS #table_detail .hidden_row {
+    display: none;
+}
+.THIS tr #hidden{
+    column-span: all;
+}
+.THIS.exampleHolder{
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+.THIS .triangle {
+    
+    width: 10px;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid blanchedalmond;
+  }

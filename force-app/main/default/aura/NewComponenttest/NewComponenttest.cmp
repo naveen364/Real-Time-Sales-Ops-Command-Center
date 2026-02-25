@@ -1,0 +1,7 @@
+<aura:component controller="Accontinsert"  implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" > 
+  <aura:attribute name="Name" type="string"/>
+    <div class="content">
+    <lightning:input label="Name" value="{!v.Name}" />
+   	<lightning:button label="Submit" title="Brand action" onclick="{! c.myAction }" />
+    </div>
+</aura:component>

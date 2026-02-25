@@ -1,0 +1,46 @@
+<template>
+    <lightning-combobox
+            name="ACCOUNT"
+            label="ACCOUNT"
+            value={value}
+            placeholder="Select Account"
+            options={accountData}
+            onchange={handleChange}
+            required
+    ></lightning-combobox>
+    <p>Selected value is: {value}</p>
+    <lightning-combobox
+            name="CONTACT"
+            label="CONTACT"
+            value={contactvalue}
+            placeholder="Select Contact"
+            options={contactData}
+            onchange={contacthandleChange}
+            required
+    ></lightning-combobox>
+    <template if:true={NameOfContact}>
+        <div class="slds-m-around_medium">
+            <p>Contact Name: {NameOfContact}</p>
+            <p>Email: {EmailOfContact}</p>
+            <p>Level__c : {LevelOfContact}</p>
+        </div>
+    </template>
+
+    <template for:each={accList} for:item="acc" for:index="index"> account acc: accList
+        
+        {acc.Name} {index}
+    </template>
+
+
+    <lightning-input type="text" label="Name" data-name="personal" placeholder="type here..." onchange={handleINputChange}></lightning-input>
+
+    <lightning-input type="text" label="LastName" data-name="personal" placeholder="type here..." onchange={handleINputChange}></lightning-input>
+
+    <lightning-input type="text" label="Email" placeholder="type here..." onchange={handleINputChange}></lightning-input>
+
+    <lightning-input type="text" label="Phone" placeholder="type here..." onchange={handleINputChange}></lightning-input>
+
+    <c-child-comp-l-w-c name={inputName}  onclick={handleChildEvnt}></c-child-comp-l-w-c>
+
+    <lightning-button variant="bare" label="Contact" onclick={handleBtnClick} ></lightning-button>
+</template>

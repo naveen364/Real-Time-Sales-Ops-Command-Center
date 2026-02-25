@@ -1,0 +1,13 @@
+<aura:component controller="Agify" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="name" type="String" />
+    <aura:attribute name="agePrediction" type="Agify.AgeApi" />
+
+    <lightning:input label="Enter Name" value="{!v.name}" />
+    <lightning:button label="Get Age Prediction" onclick="{!c.getAgePrediction}" />
+
+    <aura:if isTrue="{!not(empty(v.agePrediction))}">
+        <p>Name: {!v.agePrediction.name}</p>
+        <p>Age Prediction: {!v.agePrediction.age}</p>
+        <p>Count: {!v.agePrediction.count}</p>
+    </aura:if>
+</aura:component>

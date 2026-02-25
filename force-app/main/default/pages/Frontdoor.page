@@ -1,0 +1,69 @@
+<apex:page showHeader="false" sidebar="false"  action="{!goTalantOnDemand}" controller="Frontdoor_CTRL">
+    <style>
+    .TOD-UI h3
+        {
+        float:none;
+        }
+        .TOD-UI .btn {
+        padding: 6px 34px !important;
+        }
+    </style>
+    
+    <apex:outputPanel id="error_panel" rendered="{!isAuthRequired}">
+       
+    </apex:outputPanel>
+    
+    <apex:outputPanel id="authentication_panel" rendered="{!isAuthRequired}">
+    
+ 
+    <apex:form id="frm">
+    <apex:pageBlock id="pb">
+      <div class="content-wrapper">
+        <div class="TOD-UI" id="main-content">
+          <div class="content">
+               <apex:actionstatus id="loading">
+                            <apex:facet name="start">
+                                <div id="dvLoading" class="grey_overlay" style="z-index:100;"></div>
+                                <div >
+                                    <img src="/img/loading32.gif" title="Please Wait..." width="30px" style="position: absolute;z-index: 99;top: 50%;left: 49%;"/>
+                                </div>
+                            </apex:facet>
+                        </apex:actionstatus>
+               <header class="Title" style="padding-bottom: 53px;">
+                <h1 style="font-size: 25px;color: #fff;">{!Verbiage}
+                </h1>
+              </header>
+               <section id="myinformation-content">
+                   <apex:pageMessages id="pgmsg" escape="false" />
+               <article>
+                  
+                    <h3 style="color: black;text-transform: none;">In order to process your request, we need to validate your email address in our system.
+
+                    </h3>
+                 <div class="row">
+                     <dl class="col-1">
+                     </dl>
+                     <dl class="col-1">
+                      <dt style="color:black;">Please enter your email address.
+                      </dt>
+                         
+                     </dl>
+                      <dl class="col-2">
+                         <dt > <apex:inputText id="email" value="{!email}" style="width:63%;"/>
+                      </dt>  
+                     </dl>
+                   </div>
+                   </article>
+                    <!--footer>
+                    <div align="center">
+                        <apex:commandButton value="Next" action="{!searchemail}" styleClass="butn btn-blue" id="blue-btn"/>
+                        </div>
+                   </footer-->
+              </section>
+            </div>
+          </div>
+        </div>
+        </apex:pageBlock>
+    </apex:form>
+  </apex:outputPanel>
+</apex:page>

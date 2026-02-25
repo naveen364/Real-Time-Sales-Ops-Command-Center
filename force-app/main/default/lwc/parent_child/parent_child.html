@@ -1,0 +1,20 @@
+<template>
+    <lightning-card  variant="Narrow"  title="Create Contact" icon-name="standard:contact">
+    
+    <lightning-input type="text" label="LastName" placeholder="type here..." onchange={handleINputChange}></lightning-input>
+
+    <lightning-input type="text" label="Email" placeholder="type here..." onchange={handleINputChange}></lightning-input>
+
+    <lightning-input type="text" label="Phone" placeholder="type here..." onchange={handleINputChange}></lightning-input>
+
+    <c-child name = {Contact}></c-child>
+        <br/>
+    </lightning-card>
+    <div class="slds-m-bottom_small">
+        <lightning-progress-ring
+            value=50
+            direction="fill"
+            variant="active-step"
+        ></lightning-progress-ring>
+    </div>
+</template>

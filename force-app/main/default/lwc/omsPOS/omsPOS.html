@@ -1,0 +1,90 @@
+<template>
+    <div class="pos-container">
+        <!-- Left Panel: Product Catalog -->
+        <div class="catalog-panel">
+            <div class="catalog-header">
+                <div class="search-bar">
+                    <lightning-icon icon-name="utility:search" size="x-small"></lightning-icon>
+                    <input type="text" placeholder="Search Catalog..." onkeyup={handleSearch} />
+                </div>
+                <div class="category-filters">
+                    <template for:each={categories} for:item="cat">
+                        <button key={cat} class={cat.class} onclick={handleCategoryFilter} data-cat={cat.name}>
+                            {cat.name}
+                        </button>
+                    </template>
+                </div>
+            </div>
+            <div class="products-grid-scroll">
+                <template if:true={products}>
+                    <template for:each={products} for:item="prod">
+                        <div class="pos-product-card" key={prod.Id} onclick={addToCart} data-id={prod.Id}>
+                            <!-- Image simplified -->
+                            <div class="pos-card-image">
+                                <span>{prod.accronym}</span>
+                            </div>
+                            <div class="pos-card-info">
+                                <h4>{prod.Name}</h4>
+                                <div class="price">${prod.Price__c}</div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div>
+        <!-- Right Panel: Cart -->
+        <div class="cart-panel">
+            <div class="cart-header">
+                <h3>Current Order</h3>
+                <lightning-icon icon-name="utility:cart" size="small"></lightning-icon>
+            </div>
+            <div class="cart-items">
+                <template if:true={cartItems}>
+                    <template for:each={cartItems} for:item="item">
+                        <div class="cart-item" key={item.productId}>
+                            <div class="item-details">
+                                <div class="name">{item.name}</div>
+                                <div class="unit-price">${item.unitPrice}</div>
+                            </div>
+                            <div class="item-controls">
+                                <button onclick={decrementItem} data-id={item.productId}>-</button>
+                                <span>{item.quantity}</span>
+                                <button onclick={incrementItem} data-id={item.productId}>+</button>
+                            </div>
+                            <div class="item-total">
+                                ${item.totalLinePrice}
+                            </div>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={hasItems}>
+                    <div class="empty-cart-state">
+                        Cart is empty
+                    </div>
+                </template>
+            </div>
+            <!-- Customer & Totals -->
+            <div class="cart-footer">
+                <div class="customer-select">
+                    <lightning-input type="email" label="Customer Email" value={customerEmail}
+                        onchange={handleCustomerChange} placeholder="Enter Customer Email"></lightning-input>
+                </div>
+                <div class="totals-row">
+                    <span>Subtotal</span>
+                    <span>${subTotal}</span>
+                </div>
+                <div class="totals-row">
+                    <span>Tax (10%)</span>
+                    <span>${taxAmount}</span>
+                </div>
+                <div class="totals-row grand-total">
+                    <span>Total</span>
+                    <span>${grandTotal}</span>
+                </div>
+                <button class="btn-checkout" onclick={handleCheckout} disabled={isCheckoutDisabled}>
+                    Place Order
+                </button>
+            </div>
+        </div>
+    </div>
+</template>

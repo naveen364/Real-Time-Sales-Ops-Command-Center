@@ -1,0 +1,11 @@
+<aura:component controller="logincontact" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <div class="card">   
+        <lightning:card title="Login" footer="XD" iconName="standard:branch_merge">
+        <div class="inner">
+            UserName  :<lightning:input aura:id="username" type="String" placeholder="Enter username..." />
+            Password  :<lightning:input aura:id="password" type="password" placeholder="Enter password..." />
+            <lightning:button variant="base" label="Login" title="Login" onclick="{!c.abc}"/>
+        </div>
+        </lightning:card>
+    </div>
+</aura:component>

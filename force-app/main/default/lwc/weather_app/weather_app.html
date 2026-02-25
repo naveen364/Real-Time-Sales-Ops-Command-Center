@@ -1,0 +1,139 @@
+<template>
+    <div class="header">
+        <div class="float-left size" style="color: #fff;">Forecast</div>
+        <div class="float-right">
+            <a href="">
+                <lightning-icon class="margin" icon-name="utility:refresh" alternative-text="refresh" title="refresh">
+                </lightning-icon>
+            </a>
+            &nbsp;&nbsp;
+            <lightning-icon class="margin" icon-name="utility:favorite" alternative-text="fav" title="fav">
+            </lightning-icon>&nbsp;&nbsp;
+            <lightning-icon class="margin" icon-name="utility:pin" alternative-text="pin" title="pin"></lightning-icon>
+            &nbsp;&nbsp;
+            <div class="searchContainer" onkeyup={handleKeyUp}>
+                <input type="search" class="searchinput" />
+            </div>
+        </div>
+    </div>
+    <div style={getbackground}>
+        <div style="height:100vh;" class="container slds-scrollable_y">
+            <div class="row" style="justify-content: center;">
+                <div class="TempShow" style="z-index: 2;">
+
+                    <div style="font-size: 2rem; display: flex;
+                    flex-direction: row; justify-content: center;">
+                        {location}{region}
+                    </div>
+                    <div style="font-size: 5rem;" onclick={changeType}>
+                        <div class="row">
+                            <img src={icon_nightCloud} style="margin:8px; width:fit-content; height:fit-content">
+                            {temprature} {type}
+                        </div>
+                    </div>
+                    <div style="font-size: 1.5rem; text-align: center;">
+                        {weather} | {icon_phase}
+                    </div>
+                    <div style="font-size: 0.8rem; text-align: center;">
+                        Updated as of {time}<br />
+                        {headline}
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <div>
+                <!--// details from api-->
+            </div>
+            <div class="row">
+                <div class="daily">
+                    Daily
+                    <div class="slider-container">
+                        <span onclick={slideRight} class="btn" style="z-index:8 ;"></span>
+                        <div class="slider">
+                            <template for:each={dailyobj2} for:item="obj" for:index="i">
+                                <div key={obj} class="slide" data-id={i} onclick={active}>
+                                    <div style="z-index: 5;">
+                                        {obj.maximum} °F<br />
+                                        <img src={obj.icon}>
+                                        {obj.minimum} °F<br />
+                                        {obj.day}
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                        <span onclick={slideLeft} class="btn" style="z-index: 8;"></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="hourly">
+                    <div class="chart-container">
+                        <span style="font-size:2rem">Hourly</span>
+                        <div class="chart slds-var-m-around_medium" lwc:dom="manual"></div>
+                        <span style="font-size:2rem;">Day Details</span>
+                        <div class="slds-grid slds-gutters row1">
+                            <div class="slds-col wrap column">
+                                <hr />
+                                <div style="font-size:18px">Day</div>
+                                <div style="font-size:12px">{dayLongPhrase} </div>
+
+                                <div style="font-size:18px">Night</div>
+                                <div style="font-size:12px">{nightLongPhrase}</div>
+                            </div>
+                            <div class="slds-col wrap column" style="width:150px;">
+                                <hr />
+                                <div style="font-size:18px">Sunrise</div>
+                                <div style="font-size:12px">{sunrise}</div>
+                                <div style="font-size:18px">Sunset</div>
+                                <div style="font-size:12px">{sunset}</div>
+                            </div>
+                            <div class="slds-col wrap column" style="width:150px;">
+                                <hr />
+                                <div style="font-size:18px">Moonrise</div>
+                                <div style="font-size:12px">{moonrise}</div>
+                                <div style="font-size:18px">Moonset</div>
+                                <div style="font-size:12px">{moonset}</div>
+                            </div>
+                            <div class="slds-col wrap column" style="width:300px;">
+                                <hr />
+                                <div class="slds-col" style="font-size:18px">Perception&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Max Wind</div>
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="back" stroke-width="6"
+                                        fill="transparent" r="52" cx="60" cy="60"/>
+                                    <circle class="progress-ring__circle first" stroke="white" stroke-width="10"
+                                        fill="transparent" r="52" cx="60" cy="60"/>
+                                </svg>
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="back" stroke-width="6"
+                                        fill="transparent" r="52" cx="60" cy="60"/>
+                                    <circle class="progress-ring__circle second" stroke="white" stroke-width="10"
+                                        fill="transparent" r="52" cx="60" cy="60"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters row1">
+                            <div class="slds-col wrap column">
+                                <hr />
+                                <div style="font-size:18px">Day</div>
+                                <div style="font-size:12px">{dayLongPhrase} </div>
+
+                                <div style="font-size:18px">Night</div>
+                                <div style="font-size:12px">{nightLongPhrase}</div>
+                            </div>
+                            <div class="slds-col wrap column" style="width:150px;">
+                                <hr />
+                                <div style="font-size:18px">Sunrise</div>
+                                <div style="font-size:12px">{sunrise}</div>
+                                <div style="font-size:18px">Sunset</div>
+                                <div style="font-size:12px">{sunset}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</template>

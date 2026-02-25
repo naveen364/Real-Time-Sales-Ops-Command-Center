@@ -1,0 +1,28 @@
+<apex:page showHeader="false" sidebar="false" standardController="Actor__c">
+
+<apex:includeLightning />
+
+<div id="lightning"/>
+
+<script>
+
+$Lightning.use("c:rich_text_app", function() {
+
+    $Lightning.createComponent
+    ("c:multi_record_by_lwc",
+    {
+        "recordId" :"{!$CurrentPage.parameters.Id}"
+    },
+
+    "lightning",
+
+    function(cmp) {
+
+
+    });
+
+});
+
+</script>
+
+</apex:page>

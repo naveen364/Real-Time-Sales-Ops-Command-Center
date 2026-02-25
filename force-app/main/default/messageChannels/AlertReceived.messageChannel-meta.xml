@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Alert Received</masterLabel>
+    <isExposed>true</isExposed>
+    <description>Bridge channel for Platform Events → LMS UI components.</description>
+    <lightningMessageFields>
+        <fieldName>source</fieldName>
+        <description>Origin of the alert (PlatformEventAlerts, CDC, etc.)</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>payload</fieldName>
+        <description>The raw event payload</description>
+    </lightningMessageFields>
+</LightningMessageChannel>

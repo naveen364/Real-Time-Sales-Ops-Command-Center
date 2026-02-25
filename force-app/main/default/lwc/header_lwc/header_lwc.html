@@ -1,0 +1,20 @@
+<template>
+    <div class="headerDiv">
+        <div class="headerDivfirst headPad">
+            <!--<c:TODFormHeader logo="true"></c:TODFormHeader>
+            -->
+            <div style="margin-top: 60px;">
+                <b style="color: #86bc21; font-size: 35px; font-weight: bold;">Alumni</b><br/><br/>
+                <p class="headfont headFontSize" style="z-index: 3;">{event.Tagline_update__c} </p> <br />
+                
+                <p class="headfont bodyFontSize timezone "><span>{dayOfWeek},&nbsp;</span> {sitestartdate}</p>
+                <p class="headfont bodyFontSize timezone ">{startnewtime} -  {endnewtime}&nbsp;{event.Time_Zone_short_form__c}</p>
+            </div>
+            
+            <br/>  <br/> 
+        </div>
+        <div class="headerDivfirst">
+            <img src={DocumentImageUrl} class="headImg"/> 
+        </div>    
+    </div>
+</template>

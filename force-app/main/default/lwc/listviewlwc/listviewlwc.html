@@ -1,0 +1,276 @@
+<template>
+    <div class="slds-page-header">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <lightning-icon icon-name="standard:case" alternative-text="case" title="Opportunity">
+                        </lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span>case</span>
+                                    <span class="slds-page-header__title slds-truncate"
+                                        title={CaseListViewName}>{CaseListViewName} &nbsp;
+                                        <lightning-button-menu alternative-text="Show menu" variant="border-filled"
+                                            menu-alignment="auto" onselect={handleOnselectListView}>
+                                            <template for:each={listViewList} for:item="menuItem" for:index="index">
+                                                <lightning-menu-item key={menuItem.Id} value={menuItem.DeveloperName}
+                                                    label={menuItem.Name} title={menuItem.Name} index={index}>
+                                                </lightning-menu-item>
+                                            </template>
+                                        </lightning-button-menu>
+                                    </span>
+                                </h1>
+                            </div>
+                            <div class="slds-page-header__name-switcher">
+                                <div class="slds-dropdown-trigger slds-dropdown-trigger_click">
+                                    <button class="slds-button slds-button_icon slds-button_icon-small"
+                                        aria-haspopup="true" title="Switch list view">
+                                        <svg class="slds-button__icon slds-icon_x-small" aria-hidden="true">
+                                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+                                        </svg>
+                                        <span class="slds-assistive-text">Switch list view</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-page-header__col-actions">
+                <div class="slds-page-header__controls">
+                    <div class="slds-page-header__control">
+                        <ul class="slds-button-group-list">
+                            <li>
+                                <lightning-button label="New" title="New" onclick={CreateNewCase}
+                                    class="slds-m-left_x-small"></lightning-button>
+                                <!-- <button class="slds-button slds-button_neutral">New</button> -->
+                            </li>
+                            <li>
+                                <button class="slds-button slds-button_neutral">Prantable View</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-meta">
+                <p class="slds-page-header__meta-text">1011 items • Updated 13 minutes ago</p>
+            </div>
+        </div>
+    </div>
+    <table aria-multiselectable="true"
+        class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols" role="grid"
+        aria-label="Example advanced table of Opportunities with header menu button">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="slds-text-align_right" scope="col" style="width:3.25rem">
+                    <span id="column-group-header" class="slds-assistive-text">Choose a row</span>
+                    <div class="slds-th__action slds-th__action_form">
+                        <div class="slds-checkbox">
+                            <lightning-input type="checkbox" label="" data-id="checkbox" name="input1" value={allSelect}
+                                onchange={SelectAllRecords}></lightning-input>
+                        </div>
+                    </div>
+                </th>
+
+                <template for:each={colomName} for:item="currentItem">
+                    <th key={currentItem.key} aria-label={currentItem} aria-sort="none"
+                        class="slds-has-button-menu slds-is-resizable slds-is-sortable" scope="col">
+                        <a class="slds-th__action slds-text-link_reset" href="#" role="button" tabindex="-1">
+                            <span class="slds-assistive-text">Sort by: </span>
+                            <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                                <span class="slds-truncate" title={currentItem.key}>{currentItem.value}</span>
+                                <lightning-icon class="icon-status" icon-name={status_icon} size="xx-small"
+                                    data-id={currentItem.key} onclick={soringdata}></lightning-icon>
+                            </div>
+                            <template if:true={currentItem.checkIcon}>
+                                <div class="slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
+                                    <lightning-icon icon-name="utility:chevrondown" alternative-text="Connected"
+                                        size="xx-small" title="large size" onclick={openFilterModal}>
+                                    </lightning-icon>
+                                    <template if:true={StageNameOpoup}>
+                                        <div
+                                            class="slds-dropdown slds-dropdown_left slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
+                                            <div class="slds-dropdown_length-with-icon-5">
+
+                                                <!-- <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                                                       <div class="slds-size_1-of-2">
+                                                           <ul key ={status} class="slds-dropdown__list" role="menu" aria-label="Show More">
+                                                               <li class="slds-dropdown__item slds-is-selected" role="presentation">
+                                                                   <a aria-checked="true" href="#" role="menuitemcheckbox"
+                                                                       tabindex="0">
+                                                                       <span class="slds-truncate" title="Menu Item One">
+                                                                           <lightning-input type="checkbox" label=All size="xx-small" data-id="checkbox" name="input1" value={status}
+                                                                           onchange={filterByStatusField}></lightning-input></span>
+                                                                   </a>
+                                                               </li>  
+                                                           </ul>													</div>
+                                                       <div class="slds-size_1-of-2">
+                                                           <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_xx-small" onclick={ApplyFilter}>ApplyFilter</div>
+                                                       </div> 
+                                                       </div>  -->
+
+                                                <template for:each={listOfStatus} for:item="status" for:index="index">
+                                                    <ul key={status} class="slds-dropdown__list" role="menu"
+                                                        aria-label="Show More">
+                                                        <li class="slds-dropdown__item slds-is-selected"
+                                                            role="presentation">
+                                                            <a aria-checked="true" href="#" role="menuitemcheckbox"
+                                                                tabindex="0">
+                                                                <span class="slds-truncate" title="Menu Item One">
+                                                                    <lightning-input type="checkbox" label={status}
+                                                                        size="xx-small" data-index={index}
+                                                                        data-id="checkboxstatus" name="input1"
+                                                                        value={status} onchange={filterByStatusField}>
+                                                                    </lightning-input>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+
+                                                </template>
+
+                                            </div>
+                                            <div>
+                                                <footer>
+                                                    <button class="slds-button slds-button_neutral"
+                                                        onclick={CancelStatusModal}>Cancel</button>
+                                                    <template if:true={disableButton}>
+                                                        <lightning-button variant="brand" label="Save" title="Save"
+                                                            onclick={appylyFilter} class="slds-m-left_x-small">
+                                                        </lightning-button>
+
+                                                    </template>
+
+                                                </footer>
+                                            </div>
+
+                                        </div>
+                                    </template>
+
+                                </div>
+                            </template>
+
+                        </a>
+                        <div class="slds-resizable">
+                            <input type="range" aria-label="Name column width"
+                                class="slds-resizable__input slds-assistive-text" max="1000" min="20" tabindex="-1" />
+                            <span class="slds-resizable__handle">
+                                <span class="slds-resizable__divider" style="z-index: 0"></span>
+                            </span>
+                        </div>
+                    </th>
+
+                </template>
+
+                <th class="" scope="col" style="width:3.25rem">
+                    <div class="slds-truncate slds-assistive-text" title="Actions">Actions</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="slds-table--header-fixed_container slds-scrollable_y" style="height:150px;">
+
+            <template for:each={listOfCase} for:item="caseobj" for:index="count">
+                <tr key={caseobj.Id} aria-selected="false" class="slds-hint-parent">
+                    <td class="slds-text-align_right" role="gridcell">
+                        <a aria-checked="true" href="#" role="menuitemcheckbox" tabindex="0">
+                            <div class="slds-checkbox">
+                                <lightning-input type="checkbox" label="" data-id="checkbox1" data-indexcol={count}
+                                    name="input1" checked={caseobj.checkbox} value={caseobj.Id} onchange={SelectRecord}>
+                                </lightning-input>
+                            </div>
+                        </a>
+                    </td>
+                    <th scope="row" tabindex="0">
+                        <div class="slds-truncate" title={caseobj.CaseNumber}>
+                            <a href="#" tabindex="-1">{caseobj.CaseNumber}</a>
+                        </div>
+                    </th>
+                    <td role="gridcell">
+                        <template if:true={caseobj.Account}>
+                            <div class="slds-truncate" title={caseobj.Account.Name}>{caseobj.Account.Name}</div>
+                        </template>
+                        <template if:false={caseobj.Account}>
+                            <div class="slds-truncate" title={caseobj.Account}>{caseobj.Account}</div>
+
+                        </template>
+
+                    </td>
+                    <td role="gridcell">
+                        <div class="slds-truncate" title={Financial_Firm__c}>{Financial_Firm__c}</div>
+                    </td>
+                    <td role="gridcell">
+                        <div class="slds-truncate" title={Respondent_Name__c}>{Respondent_Name__c}</div>
+                    </td>
+                    <td role="gridcell">
+                        <div class="slds-truncate" title={caseobj.Status}>{caseobj.Status}</div>
+                    </td>
+                    <td role="gridcell">
+                        <div class="slds-truncate" title={Due_Date__c}>{Due_Date__c}</div>
+                    </td>
+                    <td role="gridcell">
+                        <div class="slds-truncate" style="max-width:10ch" title={IDR_Date__c}>{IDR_Date__c}</div>
+                    </td>
+                    <td role="gridcell">
+                        <div class="slds-truncate" title={Final_Response_Due__c}>{Final_Response_Due__c}</div>
+                    </td>
+                    <td role="gridcell">
+                        <div class="slds-truncate" title={caseobj.Premium_Charges__c}>{caseobj.Premium_Charges__c}</div>
+                    </td>
+
+                    <td role="gridcell">
+                        <div class="slds-truncate" style="max-width:11ch" title={caseobj.CreatedDate}>
+                            {caseobj.CreatedDate}</div>
+                    </td>
+                    <td role="gridcell">
+                        <template if:true={caseobj.Owner}>
+                            <div class="slds-truncate" title={caseobj.Owner.Name}>{caseobj.Owner.Name}</div>
+                        </template>
+                        <template if:false={caseobj.Account}>
+                            <div class="slds-truncate" title={caseobj.Owner}>{caseobj.Owner}</div>
+
+                        </template>
+
+                    </td>
+
+                    <td role="gridcell">
+                        <lightning-button-menu icon-size="xx-small" alternative-text="Show menu" menu-alignment="auto">
+                            <lightning-menu-item  value={caseobj.Id} label="Edit" onclick={clickOnEdit}></lightning-menu-item>
+                            <lightning-menu-item  value={caseobj.Id} label="Delete" onclick={clickOnDelete}></lightning-menu-item>
+                            <lightning-menu-item  value="Change Owner" label="Change Owner" onclick={clickOnmenu}></lightning-menu-item>
+                        </lightning-button-menu>
+                    </td>
+                </tr>
+
+            </template>
+        </tbody>
+    </table>
+    <template if:true={isModalopen}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-modal_small">
+            <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+            <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+            </svg>
+            <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+            <div class="slds-modal__header">
+            <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Delete Case</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <p>Are you sure you want to delete this case?</p>
+            </div>
+            <div class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={CancelDelete}>Cancel</button>
+            <button class="slds-button slds-button_brand" onclick={ConfirmDelete}>Delete</button>
+            </div>
+            </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+            </template>
+</template>

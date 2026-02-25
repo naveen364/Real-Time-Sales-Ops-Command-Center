@@ -1,0 +1,30 @@
+<aura:component controller="SchemaAllObj" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="key" type="List"/>
+    <aura:attribute name="objType" type="List"/>
+    <aura:attribute name="apiName" type="String"/>
+    <aura:attribute name="apiType" type="String"/>
+    <!--<aura:attribute name="tempobj" type="Object"/>-->
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <div class="card">   
+        <lightning:card title="Schema" footer="XD" iconName="standard:branch_merge">
+        <div class="inner">
+        <lightning:select aura:id="obj" name="select_object" label="--- Select obj ---" required="true" onchange="{!c.onchangeobj}">
+            <hr/>
+            <aura:iteration var="key" items="{!v.key}" indexVar="index">
+                <option value="{!key}">{!key}</option>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:select aura:id="fields" name="select fields" label="--- Select field ---" required="true" onchange="{!c.onchangefields}">
+            <hr/>
+            <aura:iteration var="objfields" items="{!v.objType}" indexVar="index">
+                <option value="{!objfields}">{!objfields}</option>
+            </aura:iteration>
+        </lightning:select>
+        
+        OBJ Name ==> {!v.apiName}
+        <br/>
+        API Type ==> {!v.apiType}
+        </div>
+        </lightning:card>
+    </div>
+</aura:component>

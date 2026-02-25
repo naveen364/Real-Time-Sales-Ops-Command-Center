@@ -1,0 +1,17 @@
+lightning-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+lightning-input{
+    margin: 1%;
+}
+
+lightning-button{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}

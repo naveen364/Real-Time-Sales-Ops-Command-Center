@@ -1,0 +1,41 @@
+<aura:component controller="oliById" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="theId" type="String"/>
+    <aura:attribute name="olilist" type="opportunityLineItem[]"/>
+    <aura:attribute name="lst" type="list"/>
+    <aura:attribute name="NoLineItem" type="boolean" default="False"/>
+    <aura:attribute name="spinner" type="boolean" default="FALSE"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    
+    <table style="width:100%" class="container">
+    <aura:if isTrue="{!v.spinner}">
+      <div class="exampleHolder">
+        <lightning:spinner id="mySpinner" alternativeText="Loading" size="large" />
+        
+      </div>
+    </aura:if>
+        <aura:if isTrue="{!v.NoLineItem}">
+          <tr><td colspan="6">No Line Item</td></tr>
+        </aura:if>
+        <aura:iteration var="oli" items="{!v.lst}" indexVar="index">
+        <tr>
+          <th>Opp_Name</th>
+          <th>Product2Id</th>
+          <th>Quantity</th>
+          <th>TotalPrice</th>
+        </tr>
+        <tr>
+          <td><lightning:input aura:id="name" value="{!oli.Opportunity.Name}" disabled="true" /></td>
+          <td><lightning:input  aura:id="proId" value="{!oli.Product2.Name}" disabled="true" /></td>
+          <td><lightning:input  aura:id="quant" value="{!oli.Quantity}" required="true"/></td>
+          <td><lightning:input  aura:id="total" value="{!oli.TotalPrice}" required="true"/></td>
+        </tr>
+        </aura:iteration>
+      </table>
+      <aura:if isTrue="{!!v.NoLineItem}">
+        <div class="floatright">
+          <lightning:button variant="success" label="Update" title="Update" onclick="{! c.updatebtn }"/>
+        </div>
+      </aura:if>
+</aura:component>

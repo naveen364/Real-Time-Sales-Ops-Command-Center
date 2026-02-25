@@ -1,0 +1,19 @@
+.THIS {
+}
+.THIS .card{
+    margin: 8px;
+    padding:20px;
+}
+.THIS .inner{
+    padding:20px;
+}
+.THIS .btn{
+    padding: 8px;
+    margin: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.THIS .hide{
+    display: none;
+}

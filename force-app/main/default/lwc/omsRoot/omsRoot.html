@@ -1,0 +1,44 @@
+<template>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-area">
+                <lightning-icon icon-name="standard:orders" size="large" alternative-text="OMS"></lightning-icon>
+                <h1 class="app-title">UltiOMS</h1>
+            </div>
+            <nav>
+                <div class="nav-item" data-view="dashboard" onclick={handleNav} data-active={isDashboard}>
+                    <lightning-icon icon-name="utility:chart" size="small"></lightning-icon>
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item" data-view="pos" onclick={handleNav} data-active={isPOS}>
+                    <lightning-icon icon-name="utility:cart" size="small"></lightning-icon>
+                    <span>POS Terminal</span>
+                </div>
+                <div class="nav-item" data-view="products" onclick={handleNav} data-active={isProducts}>
+                    <lightning-icon icon-name="utility:products" size="small"></lightning-icon>
+                    <span>Inventory</span>
+                </div>
+                <div class="nav-item" data-view="history" onclick={handleNav} data-active={isHistory}>
+                    <lightning-icon icon-name="standard:orders" size="small"></lightning-icon>
+                    <span>Orders</span>
+                </div>
+            </nav>
+        </div>
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <template if:true={isDashboard}>
+                <c-oms-dashboard></c-oms-dashboard>
+            </template>
+            <template if:true={isPOS}>
+                <c-oms-p-o-s></c-oms-p-o-s>
+            </template>
+            <template if:true={isProducts}>
+                <c-oms-product-manager></c-oms-product-manager>
+            </template>
+            <template if:true={isHistory}>
+                <c-oms-order-history></c-oms-order-history>
+            </template>
+        </div>
+    </div>
+</template>

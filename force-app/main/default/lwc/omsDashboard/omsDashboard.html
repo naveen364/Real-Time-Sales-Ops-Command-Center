@@ -1,0 +1,65 @@
+<template>
+    <div class="dashboard-grid">
+        <!-- Header -->
+        <div class="header-section">
+            <h2 class="section-title">Overview</h2>
+            <div class="date-badge">Today, {todayDate}</div>
+        </div>
+        <!-- KPI Cards -->
+        <div class="kpi-card revenue">
+            <div class="icon-box">
+                <lightning-icon icon-name="utility:currency" size="medium"></lightning-icon>
+            </div>
+            <div class="kpi-info">
+                <label>Total Revenue</label>
+                <div class="value">${totalRevenue}</div>
+            </div>
+        </div>
+        <div class="kpi-card orders">
+            <div class="icon-box">
+                <lightning-icon icon-name="utility:cart" size="medium"></lightning-icon>
+            </div>
+            <div class="kpi-info">
+                <label>Orders Today</label>
+                <div class="value">{totalOrders}</div>
+            </div>
+        </div>
+        <div class="kpi-card low-stock">
+            <div class="icon-box warning">
+                <lightning-icon icon-name="utility:warning" size="medium"></lightning-icon>
+            </div>
+            <div class="kpi-info">
+                <label>Low Stock Items</label>
+                <div class="value">{lowStockCount}</div>
+            </div>
+        </div>
+        <!-- Recent Low Stock Table -->
+        <div class="content-card wide">
+            <h3>Inventory Alerts</h3>
+            <template if:true={lowStockItems}>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>SKU</th>
+                                <th>Stock Level</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={lowStockItems} for:item="item">
+                                <tr key={item.Id}>
+                                    <td>{item.Name}</td>
+                                    <td>{item.SKU__c}</td>
+                                    <td class="numeric">{item.Stock_Quantity__c}</td>
+                                    <td><span class="badge destructive">Critical</span></td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

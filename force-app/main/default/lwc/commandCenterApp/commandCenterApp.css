@@ -1,0 +1,16 @@
+.app-container {
+    background: #f3f3f3;
+    min-height: 100vh;
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,55 @@
+<template>
+    <div class="history-container">
+        <div class="header">
+            <h2 class="title">Order History</h2>
+            <div class="search">
+                <lightning-icon icon-name="utility:search" size="x-small"></lightning-icon>
+                <input type="text" placeholder="Search orders..." />
+            </div>
+        </div>
+        <div class="table-container fade-in">
+            <table class="glass-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template if:true={orders}>
+                        <template for:each={orders} for:item="order">
+                            <tr key={order.Id}>
+                                <td class="id-col">
+                                    <div class="icon-wrapper">
+                                        <lightning-icon icon-name="standard:orders" size="small"></lightning-icon>
+                                    </div>
+                                    <span>{order.Name}</span>
+                                </td>
+                                <td>
+                                    <div class="customer-info">
+                                        <span class="name">{order.CustomerName}</span>
+                                        <span class="email">{order.CustomerEmail}</span>
+                                    </div>
+                                </td>
+                                <td>{order.FormattedDate}</td>
+                                <td class="amount">${order.Total_Amount__c}</td>
+                                <td>
+                                    <span class={order.StatusClass}>{order.Status__c}</span>
+                                </td>
+                                <td>
+                                    <button class="btn-icon">
+                                        <lightning-icon icon-name="utility:preview" size="x-small"></lightning-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </template>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
