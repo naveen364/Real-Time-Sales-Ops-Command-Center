@@ -1,0 +1,29 @@
+<aura:component controller="Accountget" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    
+    <aura:attribute name="key" type="String"/>
+    <aura:attribute name="ContactName" type="String"/>
+    <aura:attribute name="AccId" type="String"/> 
+    <aura:attribute name="Account" type="list"/>
+    <div class="card">   
+        <lightning:card title="Create Contact" footer="XD" iconName="standard:contact">
+            <div class="inner">
+                <lightning:input
+                aura:id="LastName"
+                name="contactName"
+                label="Enter Contact LastName"
+                />
+                <lightning:select aura:id="accs" name="accs" label="--- Select Account ---" required="true" onchange="{!c.onchangeacc}">
+                    <hr/>
+                    <aura:iteration var="objfields" items="{!v.Account}" indexVar="index">
+                        <option value="{!objfields.Id}">{!objfields.Name}</option>
+                    </aura:iteration>
+                </lightning:select>
+                <lightning:input aura:id="range" type="search" name="AccountName" label="Enter Account Name" placeholder="type here..." onchange="{!c.onchangekey}"/>
+                <div class="btn">
+                    <lightning:button label="Create" iconName="utility:record_create" iconPosition="left"  variant="brand" onclick="{!c.myAction}"/>
+                </div>
+                  
+            </div>
+        </lightning:card>
+    </div>
+</aura:component>

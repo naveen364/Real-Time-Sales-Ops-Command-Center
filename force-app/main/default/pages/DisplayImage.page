@@ -1,0 +1,10 @@
+<apex:page showHeader="false" controller="testclass" action="{!dmlOperation}">
+    
+    <apex:form >
+            <apex:pageBlock title="New Actor">
+                <apex:pageBlockSection columns="1">
+                    {!act.Name}
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:form>
+</apex:page>

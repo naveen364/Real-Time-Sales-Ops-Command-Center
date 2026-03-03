@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title={layoutConfig.layoutName} if:true={layoutConfig}>
+        <div class="slds-p-around_medium">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </template>
+            
+            <template if:false={isLoading}>
+                <!-- Root Layout Engine -->
+                <!-- We pass the entire structure tree to the engine -->
+                <c-layout-engine 
+                    layout-items={layoutConfig.structure} 
+                    record-data={componentState}
+                    onfieldchange={handleFieldChange}
+                    onactiontrigger={handleAction}>
+                </c-layout-engine>
+            </template>
+        </div>
+        <div slot="footer">
+            <!-- Global Actions can go here -->
+        </div>
+    </lightning-card>
+
+    <template if:true={error}>
+        <div class="slds-box slds-theme_error">
+            {error}
+        </div>
+    </template>
+</template>

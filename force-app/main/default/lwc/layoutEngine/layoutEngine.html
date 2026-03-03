@@ -1,0 +1,51 @@
+<template>
+    <template for:each={layoutItems} for:item="item">
+        <div key={item.id} class="slds-m-bottom_small">
+
+            <!-- SECTION -->
+            <template if:true={item.isSection}>
+                <lightning-accordion allow-multiple-sections-open active-section-name={item.id}>
+                    <lightning-accordion-section name={item.id} label={item.label}>
+                        <c-layout-engine layout-items={item.children} record-data={recordData}
+                            onfieldchange={handleFieldChange}>
+                        </c-layout-engine>
+                    </lightning-accordion-section>
+                </lightning-accordion>
+            </template>
+
+            <!-- FIELD -->
+            <template if:true={item.isKeyField}>
+                <c-dynamic-field field-config={item} record-data={recordData} onchange={handleFieldChange}>
+                </c-dynamic-field>
+            </template>
+
+            <!-- TABSET -->
+            <template if:true={item.isTabSet}>
+                <lightning-tabset>
+                    <template for:each={item.children} for:item="tab">
+                        <lightning-tab label={tab.label} key={tab.id}>
+                            <c-layout-engine layout-items={tab.children} record-data={recordData}
+                                onfieldchange={handleFieldChange}>
+                            </c-layout-engine>
+                        </lightning-tab>
+                    </template>
+                </lightning-tabset>
+            </template>
+
+            <!-- FALLBACK RECURSION (For pure containers) -->
+            <template if:false={item.isSection}>
+                <template if:false={item.isKeyField}>
+                    <template if:false={item.isTabSet}>
+                        <!-- e.g. Div Container -->
+                        <div if:true={item.hasChildren} class="container-generic">
+                            <c-layout-engine layout-items={item.children} record-data={recordData}
+                                onfieldchange={handleFieldChange}>
+                            </c-layout-engine>
+                        </div>
+                    </template>
+                </template>
+            </template>
+
+        </div>
+    </template>
+</template>

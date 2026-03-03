@@ -1,0 +1,17 @@
+<aura:component controller="listofaccTest" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+<aura:attribute name="acclist" type="List"/>
+<aura:attribute name="conlist" type="List"/>
+<aura:attribute name="selected" type="String"/>
+<aura:handler name="init" value="{!this}" action="{!c.getNumbers}"/>
+<lightning:select aura:id="select" name="select" label="Select an Account" required="true" onchange="{!c.onchangeAcc}">
+    <aura:iteration items = "{!v.acclist}" var="num" >
+    <option text="{!num.Id +' '+ num.Name}" value="{!num.Id}"></option>
+</aura:iteration>
+</lightning:select>
+<div>
+<aura:iteration items = "{!v.conlist}" var="con" >
+    <br/>
+    {!con.LastName}
+</aura:iteration>
+</div>
+</aura:component>

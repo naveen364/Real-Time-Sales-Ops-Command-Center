@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title="Deal Flow (Kanban)" icon-name="standard:opportunity">
+        <div class="slds-p-around_medium">
+            <template if:true={opportunities}>
+                <div class="kanban-container slds-grid slds-grid_pull-padded">
+                    <template for:each={kanbanData} for:item="column">
+                        <div key={column.label} 
+                             class="slds-col slds-p-horizontal_small kanban-column"
+                             ondragover={handleDragOver}
+                             ondrop={handleDrop}
+                             data-stage={column.label}>
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium slds-border_bottom">{column.label}</h3>
+                            <template for:each={column.items} for:item="opp">
+                                <div key={opp.Id} 
+                                     class="slds-card slds-p-around_small slds-m-bottom_small deal-card"
+                                     onclick={handleCardClick}
+                                     draggable="true"
+                                     ondragstart={handleDragStart}
+                                     data-id={opp.Id}
+                                     data-accid={opp.AccountId}
+                                     data-name={opp.Name}>
+                                    <p class="slds-text-heading_label slds-truncate">{opp.Name}</p>
+                                    <p class="slds-text-body_small">₹{opp.Amount}</p>
+                                    <p class="slds-text-color_weak">{opp.AccountName}</p>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <template if:true={error}>
+                <p class="slds-text-color_error">{error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

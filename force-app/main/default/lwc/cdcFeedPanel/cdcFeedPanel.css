@@ -1,0 +1,9 @@
+.scrollable-feed {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.event-card {
+    border-left: 4px solid #0070d2;
+    background: #f3f2f2;
+}

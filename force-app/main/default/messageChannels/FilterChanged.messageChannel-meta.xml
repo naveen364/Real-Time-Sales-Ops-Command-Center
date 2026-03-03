@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Filter Changed</masterLabel>
+    <isExposed>true</isExposed>
+    <description>Message channel for when global dashboard filters are updated.</description>
+    <lightningMessageFields>
+        <fieldName>searchTerm</fieldName>
+        <description>String search term</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>status</fieldName>
+        <description>Status filter value</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>priority</fieldName>
+        <description>Priority filter value</description>
+    </lightningMessageFields>
+</LightningMessageChannel>

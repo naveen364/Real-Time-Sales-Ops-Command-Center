@@ -1,0 +1,35 @@
+<aura:component controller="createCon" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    
+    <aura:attribute name="lst" type="list" default="[{}]"/>
+    <aura:attribute name="lst_first" type="list"/>
+    <aura:attribute name="lst_last" type="list"/>
+    <aura:attribute name="first" default="first" type="String"/> 
+    <aura:attribute name="last" default="last" type="String"/> 
+    <aura:attribute name="del" default="del" type="String"/> 
+    <aura:attribute name="indx" type="Integer" default="0"/>
+    <aura:attribute name="conlist" access="PUBLIC" type="list" default="Contact[]" />
+    <div class="card">   
+        <lightning:card title="Contact" footer="{!v.recordId}" iconName="standard:account">
+        <div class="inner">
+            <lightning:buttonIcon iconName="utility:new" variant="bare" onclick="{! c.handleClick }" alternativeText="Add" title="Add" />
+            <table style="width:100%">
+                
+                <aura:iteration var="contact" items="{!v.lst}" indexVar="index">
+                  <tr>
+                  <th>FirstName</th>
+                  <th>LastName</th>
+                  <th>Delete</th>
+                </tr> 
+                <tr>
+                  <td><lightning:input aura:id="first" required="true"/></td>
+                  <td><lightning:input  aura:id="last" required="true"/></td>
+                  <td><lightning:buttonIcon aura:id="{!index}" iconName="utility:delete" value="{!index}" variant="bare" onclick="{! c.delClick }" alternativeText="delete" title="delete" /></td>
+                
+                </tr>
+                </aura:iteration>
+              </table>
+              <lightning:buttonIcon iconName="utility:send" variant="bare" onclick="{! c.submit }" alternativeText="submit" title="submit" />
+        </div>
+        </lightning:card>
+    </div>
+</aura:component>

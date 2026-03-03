@@ -1,0 +1,36 @@
+<template>
+  <lightning-card title="Event Calendar">
+    <div class="Header">
+      <!--write here for handle month year-->
+      <div class="slds-clearfix">
+        <div class="slds-float_left slds-text-heading_large" style="padding:10px;">
+          {year}
+        </div>
+        <div class="slds-align_absolute-center" style="size:3rem;">{monthName}</div>
+        <div class="slds-float_right">
+          <lightning-button-icon icon-name="utility:chevronleft" variant="border-filled" alternative-text="Pre"
+            title="previous" onclick={preMonth}></lightning-button-icon>
+          <lightning-button-icon icon-name="utility:chevronright" variant="border-filled" alternative-text="Next"
+            title="Next" onclick={nxtMonth}></lightning-button-icon>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <template for:each={days} for:item="Dayobj" for:index="i">
+        <div key={Dayobj} data-id={i} onclick={active}>
+          <div style="z-index: 5; display: grid" class="grid-item">
+            {Dayobj}
+          </div>
+        </div>
+      </template>
+      <template for:each={listofDate} for:item="Dateobj" for:index="i">
+        <div key={Dateobj} data-id={i} onclick={active}>
+          <div style="z-index: 5; display: grid" class="grid-item">
+            {Dateobj.date}
+          </div>
+        </div>
+      </template>
+    </div>
+    <p slot="footer">Card Footer</p>
+  </lightning-card>
+</template>

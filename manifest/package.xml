@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>CommandCenterController</members>
+        <members>DealAlertTriggerHandler</members>
+        <members>SLAMonitorBatch</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>OpportunityTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>accountDetailSidebar</members>
+        <members>cdcFeedPanel</members>
+        <members>commandCenterApp</members>
+        <members>dealKanbanBoard</members>
+        <members>platformEventAlerts</members>
+        <members>syncStatusBadge</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>AlertReceived</members>
+        <members>FilterChanged</members>
+        <members>RecordSelected</members>
+        <name>LightningMessageChannel</name>
+    </types>
+    <types>
+        <members>DealAlert__e</members>
+        <members>ExternalSync__e</members>
+        <members>SLABreach__e</members>
+        <name>CustomObject</name>
+    </types>
+    <version>65.0</version>
+</Package>

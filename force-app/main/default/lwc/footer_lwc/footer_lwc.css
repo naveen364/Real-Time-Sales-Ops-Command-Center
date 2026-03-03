@@ -1,0 +1,21 @@
+.footerDiv {
+    background: black !important;
+    position: relative;
+    z-index: 99999;
+}
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: calibri;
+}
+
+.footerDiv p {
+    color: white !important;
+    font-family: calibri !important;
+    font-size: 9px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}

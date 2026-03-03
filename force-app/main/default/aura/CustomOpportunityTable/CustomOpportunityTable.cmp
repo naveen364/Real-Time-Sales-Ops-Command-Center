@@ -1,0 +1,81 @@
+<aura:component controller="GetOpportunity" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="opp" type="Opportunity[]"/>
+    <aura:attribute name="paginationList" type="Opportunity[]"/>
+    <aura:attribute name="pageSize" type="Integer" default="5"/>
+    <aura:attribute name="totalSize" type="Integer"/>
+    <aura:attribute name="start" type="Integer" />
+    <aura:attribute name="end" type="Integer"/>
+    <aura:attribute name="buttonstate" type="Boolean" default="false"/>
+    <aura:attribute name="expandstate" type="Boolean" default="false"/>
+    <aura:attribute name="icon" type="String" default="utility:chevronright" />
+    <aura:attribute name="index" type="Integer"/>
+    <aura:attribute name="oppId" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/> 
+    <div class="card">   
+        <lightning:card title="Opportunity" footer="XD" iconName="standard:opportunity">
+        <div class="inner">
+            <table >
+                {!v.paginationList} {!v.pageSize} {!v.totalSize}
+                <tr > <td style="width:5%">Show</td><td style="width:7%"><ui:inputSelect aura:id="records" change="{!c.onSelectChange}">
+                <ui:inputSelectOption text="5" value="5"/>
+                <ui:inputSelectOption text="10" value="10"/>
+                <ui:inputSelectOption text="20" value="20"/>
+                <ui:inputSelectOption text="30" value="30"/>
+                </ui:inputSelect></td><td>Entries</td>
+                </tr>
+            </table>
+
+            <table style="width:100%">
+                <tr>
+                    <th>
+                        expand
+                    </th>
+                  <th>
+                    <lightning:buttonStateful
+                        labelWhenOff="Name"
+                        labelWhenOn="Name"
+                        iconNameWhenOff="utility:chevronup"
+                        iconNameWhenOn="utility:chevrondown"
+                        state="{! v.buttonstate }"
+                        onclick="{! c.sortName }"
+                    /></th>
+                  <th>StageName</th>
+                  <th>CloseDate</th>
+                  <th>AccountName</th>
+                  
+                </tr>
+                <tbody>
+                <aura:iteration var="opp" items="{!v.paginationList}" indexVar="index">
+                <tr>
+                    <td> 
+                        <lightning:buttonIcon aura:id="{!v.index}" iconName="{!v.icon}" value="{!index}" variant="bare" onclick="{! c.expand }" alternativeText="expand" title="expand" />
+                        
+                    </td>
+                  <td>{!opp.Name}</td>
+                  <td>{!opp.StageName}</td>
+                  <td>{!opp.CloseDate}</td>
+                  <td>{!opp.Account.Name}</td>
+                </tr>
+                <aura:if isTrue="{!v.expandstate}">
+                    
+                <aura:if isTrue="{!v.index == index}">
+                    <tr>
+                        <td colspan="5"><div class="triangle"></div><c:lineItemCompo theId="{!opp.Id}"/></td>
+                    </tr>
+                    <!--child component-->
+                </aura:if>   
+                </aura:if>  
+                </aura:iteration>
+                
+                </tbody>
+              </table>
+              <div class="floatright">
+                <lightning:button label="First" disabled="{!v.start == 0}"  onclick="{!c.first}" />
+                <lightning:button label="Previous" disabled="{!v.start == 0}"  onclick="{!c.previous}" />
+                <lightning:button label="Next" disabled="{!v.end >= v.totalSize-1}" onclick="{!c.next}" />
+                <lightning:button label="Last" disabled="{!v.end >= v.totalSize-1}" onclick="{!c.last}" />
+            </div>
+        </div>
+        </lightning:card>
+    </div>
+</aura:component>

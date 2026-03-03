@@ -1,0 +1,18 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    
+    <aura:attribute name="rang" type="list"/>
+    <aura:attribute name="fst" type="Integer"/>
+    <div class="card">   
+    <lightning:card title="Multiplication" footer="XD" iconName="standard:branch_merge">
+    <div class="inner"> 
+    First  :<lightning:input aura:id="first" type="number" name="first" label="Number field with placeholder" placeholder="type here..." onchange="{!c.changefirst}"/>
+    Second :<lightning:input aura:id="range" type="list" name="second" label="Number field with placeholder" placeholder="type here..." onchange="{!c.changefirst}"/>
+    <lightning:button variant="base" label="Base" title="Base action" onclick="{! c.handleClick }"/>
+    <aura:iteration var="key" items="{!v.rang}" indexVar="index">
+        <br/>
+        {!v.fst} X {!key} = {!v.fst * key}
+    </aura:iteration>
+    </div>
+    </lightning:card>
+    </div>
+</aura:component>

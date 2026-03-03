@@ -1,0 +1,8 @@
+<template>
+    <div class="slds-p-horizontal_small">
+        <lightning-input label={fieldConfig.label} value={value} required={isRequired} readonly={isReadonly}
+            onchange={handleChange}>
+        </lightning-input>
+        <!-- Logic to switch to combobox/textarea based on fieldConfig.attrs.inputType would go here -->
+    </div>
+</template>

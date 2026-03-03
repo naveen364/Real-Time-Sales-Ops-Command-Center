@@ -1,0 +1,25 @@
+<aura:component controller="wrappertestRelative" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="choice" type="string"/>
+    <aura:attribute name="listOfAcc" type="List"/>
+    <aura:attribute name="conlist" type="List"/>
+    <aura:attribute name="opplist" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <lightning:select aura:id="select" name="select" label="Select Account" required="true" onchange="{!c.onchangeAcc}">
+        <hr/>
+        <aura:iteration var="ch" items="{!v.listOfAcc}" indexVar="index">
+        	<option value="{!index}">{!ch.Name}</option>
+        </aura:iteration>
+    </lightning:select>
+    <lightning:select name="contact" label="list of contact">
+        <hr/>
+        <aura:iteration var="ch" items="{!v.conlist}">
+        	<option value="{!ch.Id}">{!ch.Name}</option>
+        </aura:iteration>
+    </lightning:select>
+    <lightning:select name="opp" label="list of opp">
+        <hr/>
+        <aura:iteration var="ch" items="{!v.opplist}">
+        	<option value="{!ch.Id}">{!ch.Name}</option>
+        </aura:iteration>
+    </lightning:select>
+</aura:component>

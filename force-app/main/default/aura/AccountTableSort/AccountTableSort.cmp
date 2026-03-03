@@ -1,0 +1,33 @@
+<aura:component controller="Accountget" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="Acc" type="list"/>
+    <aura:attribute name="buttonstate" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/> 
+    <div class="card">   
+        <lightning:card title="Account" footer="XD" iconName="standard:account">
+        <div class="inner">
+            <table style="width:100%">
+                <tr>
+                  <th>
+                    <lightning:buttonStateful
+                        labelWhenOff="Name"
+                        labelWhenOn="Name"
+                        iconNameWhenOff="utility:chevronup"
+                        iconNameWhenOn="utility:chevrondown"
+                        state="{! v.buttonstate }"
+                        onclick="{! c.sortName }"
+                    /></th>
+                  <th>Phone</th>
+                  <th>Website</th>
+                </tr>
+                <aura:iteration var="account" items="{!v.Acc}">
+                <tr>
+                  <td>{!account.Name}</td>
+                  <td>{!account.Phone}</td>
+                  <td>{!account.Website}</td>
+                </tr>
+                </aura:iteration>
+              </table>
+        </div>
+        </lightning:card>
+    </div>
+</aura:component>

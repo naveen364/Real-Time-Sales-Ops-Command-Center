@@ -1,0 +1,16 @@
+<template>
+	<!--Account comp-->
+	<template if:true={AccCard}>
+		<lightning-input onchange={AccNumChange} type="number" name="ACCNUM" label="Enter Account Number"></lightning-input>
+		<lightning-button variant="base" label="Submit" title="Submit" onclick={nxtPageHandler}
+			class="slds-m-left_x-small"></lightning-button>
+	</template>
+
+	<!--contact comp-->
+	<template if:true={conCard}>
+		<lightning-input onchange={firstNameChange} type="text" label="FirstName" value=""></lightning-input>
+		<lightning-input onchange={lastNameChange} type="text" label="LastName" value=""></lightning-input>
+        <lightning-button variant="base" label="Save" title="Save" onclick={saveContact}
+			class="slds-m-left_x-small"></lightning-button>
+	</template>
+</template>

@@ -1,0 +1,51 @@
+<template>
+    <lightning-card title="Dynamic Callable Demo" icon-name="custom:custom83">
+        <div class="slds-p-around_medium">
+            <div class="slds-grid slds-gutters">
+                <!-- Class Selection -->
+                <div class="slds-col">
+                    <lightning-combobox
+                        name="className"
+                        label="Select Operation Type (Class)"
+                        value={selectedClass}
+                        placeholder="Select Class"
+                        options={classOptions}
+                        onchange={handleClassChange} >
+                    </lightning-combobox>
+                </div>
+                <!-- Action Selection -->
+                <div class="slds-col">
+                    <lightning-combobox
+                        name="actionName"
+                        label="Select Action"
+                        value={selectedAction}
+                        placeholder="Select Action"
+                        options={actionOptions}
+                        onchange={handleActionChange}
+                        disabled={isActionDisabled}>
+                    </lightning-combobox>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters slds-m-top_medium">
+                <!-- Inputs -->
+                <div class="slds-col">
+                    <lightning-input label="Value 1" value={val1} onchange={handleVal1Change}></lightning-input>
+                </div>
+                 <div class="slds-col">
+                    <lightning-input label="Value 2" value={val2} onchange={handleVal2Change}></lightning-input>
+                </div>
+            </div>
+            <!-- Execute Button -->
+            <div class="slds-m-top_medium">
+                <lightning-button variant="brand" label="Execute" onclick={handleExecute} disabled={isExecuteDisabled}></lightning-button>
+            </div>
+            <!-- Result -->
+             <div class="slds-m-top_medium slds-box slds-box_small slds-theme_shade">
+                <p><strong>Result:</strong> {result}</p>
+                <template if:true={error}>
+                     <p class="slds-text-color_error">Error: {error}</p>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

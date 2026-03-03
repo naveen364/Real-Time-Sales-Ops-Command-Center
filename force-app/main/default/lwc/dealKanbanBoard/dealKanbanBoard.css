@@ -1,0 +1,25 @@
+.kanban-container {
+    overflow-x: auto;
+    display: flex;
+}
+
+.kanban-column {
+    min-width: 250px;
+}
+
+.deal-card {
+    cursor: pointer;
+    border: 1px solid #dddbda;
+    transition: all 0.2s ease;
+}
+
+.deal-card:hover {
+    border-color: #0070d2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    cursor: grab;
+}
+
+.deal-card:active {
+    cursor: grabbing;
+}

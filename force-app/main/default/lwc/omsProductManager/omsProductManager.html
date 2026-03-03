@@ -1,0 +1,90 @@
+<template>
+    <div class="product-manager-container">
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <h2 class="title">Inventory Manager</h2>
+            <div class="actions">
+                <div class="search-box">
+                    <lightning-icon icon-name="utility:search" size="x-small"></lightning-icon>
+                    <input type="text" placeholder="Search products..." onkeyup={handleSearch} />
+                </div>
+                <button class="btn-primary" onclick={handleNewProduct}>
+                    <lightning-icon icon-name="utility:add" size="x-small" variant="inverse"></lightning-icon>
+                    Add Product
+                </button>
+            </div>
+        </div>
+        <!-- Product Grid -->
+        <div class="product-grid">
+            <template if:true={products}>
+                <template for:each={products} for:item="prod">
+                    <div class="product-card" key={prod.Id}>
+                        <div class="card-image">
+                            <!-- Placeholder image logic or assume Image_URL__c -->
+                            <lightning-icon icon-name="standard:product" size="large"></lightning-icon>
+                        </div>
+                        <div class="card-content">
+                            <h3>{prod.Name}</h3>
+                            <div class="sku-badge">{prod.SKU__c}</div>
+                            <div class="price-row">
+                                <span class="price">${prod.Price__c}</span>
+                                <div class="stock-control">
+                                    <span class="label">Stock:</span>
+                                    <template if:true={prod.isEditingStock}>
+                                        <input type="number" value={prod.Stock_Quantity__c} data-id={prod.Id}
+                                            onblur={saveStock} class="stock-input" />
+                                    </template>
+                                    <template if:false={prod.isEditingStock}>
+                                        <span class="stock-val" onclick={enableStockEdit} data-id={prod.Id}>
+                                            {prod.Stock_Quantity__c}
+                                        </span>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </div>
+    <!-- Add Product Modal -->
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                    </button>
+                    <h2 class="slds-text-heading_medium slds-hyphenate">Add New Product</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="form-grid">
+                        <lightning-input label="Product Name" data-field="Name" value={newProduct.Name}
+                            onchange={handleInputChange} required></lightning-input>
+                        <lightning-input label="SKU" data-field="SKU__c" value={newProduct.SKU__c}
+                            onchange={handleInputChange} required></lightning-input>
+                        <lightning-input type="number" label="Price" data-field="Price__c" value={newProduct.Price__c}
+                            formatter="currency" step="0.01" onchange={handleInputChange} required></lightning-input>
+                        <lightning-input type="number" label="Stock Quantity" data-field="Stock_Quantity__c"
+                            value={newProduct.Stock_Quantity__c} onchange={handleInputChange}
+                            required></lightning-input>
+                        <lightning-combobox label="Category" value={newProduct.Category__c}
+                            placeholder="Select Category" options={categoryOptions} onchange={handleCategoryChange}
+                            required>
+                        </lightning-combobox>
+                        <lightning-input label="Image URL" data-field="Image_URL__c" value={newProduct.Image_URL__c}
+                            onchange={handleInputChange}></lightning-input>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={saveProduct}>Save Product</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    </div>
+</template>
